@@ -44,4 +44,10 @@ public class OrderServiceImpl implements OrderService{
         order.setPaymentMode(paymentMode);
         return orderRepository.save(order);
     }
+
+    @Override
+    public List<Order> searchOrders(String keyword, int page, int size) {
+        int offset = (page - 1) * size;
+        return orderRepository.searchOrdersWithLimit(keyword, size, offset);
+    }
 }

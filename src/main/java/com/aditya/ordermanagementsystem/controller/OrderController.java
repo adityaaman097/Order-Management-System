@@ -26,7 +26,7 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public String addOrder(@RequestBody Order order){
+    public String placeOrder(@RequestBody Order order){
         orderService.saveOrder(order);
         return "Order Created Successfully";
     }
@@ -36,9 +36,14 @@ public class OrderController {
         return orderService.updatedOrder(order, id);
     }
 
-    @PatchMapping("/orders/{id}/payment-mode")
+    @PatchMapping("/order/{id}/payment-mode")
     public ResponseEntity<Order> updatePaymentMode(@PathVariable long id, @RequestParam String paymentMode) {
         Order updatedOrder = orderService.updateOrderPaymentMode(paymentMode, id);
         return ResponseEntity.ok(updatedOrder);
+    }
+
+    @GetMapping("order/search")
+    public List<Order> searchPaginatedOrderByTitleDescription(@RequestParam String keyword, @RequestParam int page, @RequestParam int size){
+        return orderService.searchOrders(keyword, page, size);
     }
 }

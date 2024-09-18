@@ -11,4 +11,5 @@ public interface OrderService {
     public void saveOrder(Order o);
     public Order updatedOrder(Order o, long id);
     public Order updateOrderPaymentMode(String paymentMode, long id);
+    public List<Order> searchOrders(String keyword, int page, int size);
 }
