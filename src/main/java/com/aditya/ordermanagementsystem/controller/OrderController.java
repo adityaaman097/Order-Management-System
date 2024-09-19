@@ -43,7 +43,9 @@ public class OrderController {
     }
 
     @GetMapping("order/search")
-    public List<Order> searchPaginatedOrderByTitleDescription(@RequestParam String keyword, @RequestParam int page, @RequestParam int size){
+    public List<Order> searchPaginatedOrderByTitleDescription(@RequestParam String keyword,
+                                                              @RequestParam(value = "page", defaultValue = "1", required = false) int page,
+                                                              @RequestParam(value = "size", defaultValue = "2", required = false) int size){
         return orderService.searchOrders(keyword, page, size);
     }
 }

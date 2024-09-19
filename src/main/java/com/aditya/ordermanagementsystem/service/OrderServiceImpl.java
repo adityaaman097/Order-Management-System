@@ -3,6 +3,9 @@ package com.aditya.ordermanagementsystem.service;
 import com.aditya.ordermanagementsystem.entity.Order;
 import com.aditya.ordermanagementsystem.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,7 +50,11 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<Order> searchOrders(String keyword, int page, int size) {
-        int offset = (page - 1) * size;
-        return orderRepository.searchOrdersWithLimit(keyword, size, offset);
+//        int offset = (page - 1) * size;
+//        return orderRepository.searchOrdersWithLimit(keyword, size, offset);
+        Pageable p = PageRequest.of(page, size);
+        Page<Order> pagePost = this.orderRepository.findAll(p);
+        List<Order> allOrder = pagePost.getContent();
+        return allOrder;
     }
 }

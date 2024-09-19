@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    @Query(value = "SELECT * FROM `order` WHERE title LIKE %:keyword% OR description LIKE %:keyword% LIMIT :limit OFFSET :offset", nativeQuery = true)
-    List<Order> searchOrdersWithLimit(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+//    @Query(value = "SELECT * FROM `order` WHERE title LIKE %:keyword% OR description LIKE %:keyword% LIMIT :limit OFFSET :offset", nativeQuery = true)
+//    List<Order> searchOrdersWithLimit(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
 
 }
