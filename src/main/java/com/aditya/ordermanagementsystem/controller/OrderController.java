@@ -9,12 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 public class OrderController {
-
     @Autowired
     private OrderServiceImpl orderService;
 
@@ -40,7 +38,7 @@ public class OrderController {
         }
     }
 
-    @PatchMapping("/order/{id}/payment-mode")
+    @PatchMapping("/payment/{id}")
     public ResponseEntity<?> updatePaymentMode(@PathVariable long id, @RequestParam String paymentMode) {
         try{
             Order updatedOrder = orderService.updateOrderPaymentMode(paymentMode, id);

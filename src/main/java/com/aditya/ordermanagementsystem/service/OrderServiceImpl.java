@@ -3,7 +3,6 @@ package com.aditya.ordermanagementsystem.service;
 import com.aditya.ordermanagementsystem.entity.Order;
 import com.aditya.ordermanagementsystem.repository.OrderRepository;
 import com.aditya.ordermanagementsystem.threads.UpdateOrderTask;
-import org.hibernate.sql.exec.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
