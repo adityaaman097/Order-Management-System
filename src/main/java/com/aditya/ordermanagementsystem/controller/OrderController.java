@@ -48,7 +48,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("order/search")
+    @GetMapping("/order/search")
     public ResponseEntity<?> searchPaginatedOrderByTitleDescription(@RequestParam String keyword,
                                                               @RequestParam(value = "page", defaultValue = "0", required = false) int page,
                                                               @RequestParam(value = "size", defaultValue = "2", required = false) int size){
@@ -63,7 +63,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("order/search/price")
+    @GetMapping("/order/search/price")
     public ResponseEntity<?> searchOrderByPriceRange(@RequestParam(value = "minPrice", defaultValue = "0.0") double minPrice,
                                                      @RequestParam(value = "maxPrice", defaultValue = "1000000") double maxPrice,
                                                      @RequestParam(value = "page", defaultValue = "0") int page,
@@ -77,7 +77,7 @@ public class OrderController {
          }
     }
 
-    @GetMapping("order/search/brand")
+    @GetMapping("/order/search/brand")
     public ResponseEntity<?> searchOrderByBrand(@RequestParam(value = "brand", defaultValue = "Tech") String brand,
                                                 @RequestParam(value = "page", defaultValue = "0") int page,
                                                 @RequestParam(value = "size", defaultValue = "5") int size){
@@ -88,7 +88,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("order/search/feedback")
+    @GetMapping("/order/search/feedback")
     public ResponseEntity<?> searchOrderByFeedback(@RequestParam(value = "brand", defaultValue = "good%quality") String feedback,
                                                    @RequestParam(value = "page", defaultValue = "0") int page,
                                                    @RequestParam(value = "size", defaultValue = "5") int size){
@@ -99,7 +99,7 @@ public class OrderController {
         }
     }
 
-    @GetMapping("order/search/filter")
+    @GetMapping("/order/search/filter")
     public ResponseEntity<?> searchOrderByFeedbackPriceBrand(@RequestParam(value = "minPrice", defaultValue = "0.0") double minPrice,
                                                              @RequestParam(value = "maxPrice", defaultValue = "1000000") double maxPrice,
                                                              @RequestParam(value = "feedback", defaultValue = "good%quality") String feedback,
@@ -113,15 +113,13 @@ public class OrderController {
         }
     }
 
-    @GetMapping("order/search/{id}")
+    @GetMapping("/order/search/{id}")
     public ResponseEntity<DataResponse<?>> searchPaginatedOrderByTitleDescription(@PathVariable long id){
         try{
             Order order = orderService.getOrderByID(id);
 
-            // Map the Order entity to the custom DTO
             OrderResponseDTO orderResponseDTO = new OrderResponseDTO(order);
 
-            // Wrap the DTO in the DataResponse object
             DataResponse<OrderResponseDTO> response = new DataResponse<>(orderResponseDTO);
             return ResponseEntity.ok(response);
         }catch (IllegalArgumentException e){
